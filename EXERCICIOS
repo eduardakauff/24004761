@@ -1,1 +1,60 @@
-##teste
+//codigo para analisar vendas
+
+#include<stdio.h>
+int main(void)
+{
+    char nomeproduto[50];
+    printf("Nome do produto:");
+    scanf("%s",nomeproduto);
+    
+    int qtdvendas;
+    printf("Digite a quantidade vendida: ");
+    scanf("%d",&qtdvendas);
+    
+    float precounit;
+    printf("Valor unitário: ");
+    scanf("%f",&precounit);
+    
+    float valortotal=qtdvendas*precounit;
+    printf("O valor total de %s é de: R$%.2f\n\n",nomeproduto,valortotal);
+    
+    
+    char nomeproduto2[50];
+    printf("Nome do produto: ");
+    scanf("%s",nomeproduto2);
+    
+    int qtdvendas2;
+    printf("Digite a quantidade vendida: ");
+    scanf("%d",&qtdvendas2);
+    
+    float precounit2;
+    printf("Valor unitário: ");
+    scanf("%f",&precounit2);
+    
+    float valortotal2=qtdvendas2*precounit2;
+    printf("O valor total de %s é de: R$%.2f\n\n",nomeproduto2,valortotal2);
+    
+    
+    char nomeproduto3[50];
+    printf("Nome do produto: ");
+    scanf("%s",nomeproduto3);
+    
+    int qtdvendas3;
+    printf("Digite a quantidade vendida: ");
+    scanf("%d",&qtdvendas3);
+    
+    float precounit3;
+    printf("Valor unitário: ");
+    scanf("%f",&precounit3);
+    
+    float valortotal3=qtdvendas3*precounit3;
+    printf("O valor total de %s é de: R$%.2f\n\n",nomeproduto3,valortotal3);
+    
+    
+    float valordia=valortotal+valortotal2+valortotal3;
+    printf("O valor total arrecadado foi de: R$%.2f",valordia);
+    
+    return 0;
+    
+    
+}
