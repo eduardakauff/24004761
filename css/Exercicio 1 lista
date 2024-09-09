@@ -1,0 +1,38 @@
+1.a
+# include < stdio .h >
+
+int main ()
+{
+ int n = 4000000000;
+ printf ( " % d \n " , n );
+ return 0;
+ }
+
+1.b
+#include<stdio.h>
+
+int main () 
+{
+    int a;
+    printf ( " % d \n " , a );
+    return 0;
+}
+
+1.c
+#include <stdio.h>
+int main ()
+{
+    printf ( "%d",4);
+    printf ( "%d",2);
+    return 0;
+}
+
+1.d
+# include <stdio.h>
+int main () 
+{
+    int a ;
+    scanf ( " %i" ,&a );
+    printf ( " %i",a );
+    return 0;
+}
