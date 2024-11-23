@@ -1,0 +1,507 @@
+While
+1.#include <stdio.h>
+
+int main() {
+    float temperatura;
+
+    while (1) {
+        printf("Digite a temperatura atual (°C): ");
+        scanf("%f", &temperatura);
+
+        if (temperatura < 20.0 || temperatura > 25.0) {
+            printf("Alerta! Temperatura fora do intervalo aceitável (20°C a 25°C).\n");
+        }
+    }
+
+    return 0;
+}
+
+2.#include <stdio.h>
+
+int main() {
+    int C;
+    printf("Digite o nível de combustível atual (%%): ");
+    scanf("%f", &C);
+
+    while (C != 100.0) {
+        if (C< 15.0) {
+            printf("Alerta! Nível de combustível abaixo de 15%%. Recarregue o veículo!\n");
+        }else {
+            printf("Nível de combustível adequado.\n");
+        }
+     printf("Digite o nível de combustível atual (%%): ");
+        scanf("%f", &C);
+    }
+
+    // Finaliza quando o tanque estiver cheio
+    printf("Nível de combustível cheio (100%%). Programa finalizado.\n");
+    return 0;
+}
+
+3.#include <stdio.h>
+
+int main() {
+    int passos,soma=0, meta = 10000;
+
+    while (soma < meta) {
+        printf("Digite o número de passos dados: ");
+        scanf("%d", &passos);
+        
+        soma += passos;
+        printf("Total de passos até agora: %d\n", soma);
+
+        if (soma >= meta) {
+            printf("Parabéns! Você atingiu ou ultrapassou a meta de 10.000 passos.\n");
+        } else {
+            printf("Continue andando! Faltam %d passos para atingir a meta.\n", meta - soma);
+        }
+    }
+
+    return 0;
+}
+
+4.#include <stdio.h>
+
+int main() {
+    double deposito;
+
+    printf("Bem-vindo ao sistema bancário!\n");
+    printf("Para abrir uma conta, é necessário um depósito inicial de pelo menos R$ 500,00.\n");
+
+    do {
+        printf("Insira o valor do depósito inicial: R$ ");
+        scanf("%lf", &deposito);
+
+        if (deposito < 500.0) {
+            printf("Erro: o valor do depósito deve ser no mínimo R$ 500,00. Tente novamente.\n");
+        }
+    } while (deposito < 500.0);
+
+    printf("Depósito de R$ %.2lf realizado com sucesso. Conta aberta!\n", deposito);
+    return 0;
+}
+
+Desafio.
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int n, i;
+    float soma = 0, soma_quadrados = 0, media, desvio_padrao;
+
+    printf("Quantos preços deseja inserir? ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Erro: é necessário inserir pelo menos 1 preço.\n");
+        return 1;
+    }
+
+    float precos[n];
+
+    for (i = 0; i < n; i++) {
+        printf("Insira o preço da ação %d: ", i + 1);
+        scanf("%f", &precos[i]);
+        soma += precos[i];
+        soma_quadrados += precos[i] * precos[i];
+    }
+    media = soma / n;
+
+    desvio_padrao = sqrt((soma_quadrados / n) - (media * media));
+
+    printf("\nResultados:\n");
+    printf("Média dos preços: %.2f\n", media);
+    printf("Desvio padrão: %.2f\n", desvio_padrao);
+
+    if (desvio_padrao < 5.0) {
+        printf("Desempenho: Estável\n");
+    } else {
+        printf("Desempenho: Volátil\n");
+    }
+
+    return 0;
+}
+
+Do while
+1.#include <stdio.h>
+#include <string.h>
+
+void controle_movimento() {
+    int x = 0, y = 0;
+    char comando[10];
+
+    printf("Controle de Movimento do Robô (Espaço 10x10)\n");
+    do {
+        printf("Digite o comando (frente, tras, esquerda, direita) ou 'sair': ");
+        scanf("%s", comando);
+
+        if (strcmp(comando, "frente") == 0 && y < 10) {
+            y++;
+        } else if (strcmp(comando, "tras") == 0 && y > 0) {
+            y--;
+        } else if (strcmp(comando, "esquerda") == 0 && x > 0) {
+            x--;
+        } else if (strcmp(comando, "direita") == 0 && x < 10) {
+            x++;
+        } else if (strcmp(comando, "sair") == 0) {
+            printf("Encerrando programa.\n");
+            break;
+        } else {
+            printf("Comando inválido ou fora dos limites!\n");
+        }
+        printf("Posição atual: (%d, %d)\n", x, y);
+    } while (strcmp(comando, "sair") != 0);
+}
+
+2.#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void leitura_sensores() {
+    char comando[10];
+    float distancia;
+
+    srand(time(0)); // Inicializa o gerador de números aleatórios
+    printf("Leitura de Sensores de Distância\n");
+
+    do {
+        printf("Digite 'ler' para medir distância ou 'parar': ");
+        scanf("%s", comando);
+
+        if (strcmp(comando, "ler") == 0) {
+            distancia = (rand() % 1500) / 100.0 + 5; // Gera distância entre 5.00 e 20.00
+            printf("Distância medida: %.2f cm\n", distancia);
+            if (distancia < 10) {
+                printf("Distância menor que 10 cm. Encerrando medição.\n");
+                break;
+            }
+        } else if (strcmp(comando, "parar") == 0) {
+            printf("Encerrando programa.\n");
+        } else {
+            printf("Comando inválido!\n");
+        }
+    } while (strcmp(comando, "parar") != 0);
+}
+
+3.#include <stdio.h>
+
+void controle_atuacao() {
+    int comando;
+
+    printf("Controle de Atuação do Robô\n");
+    do {
+        printf("Ações disponíveis:\n");
+        printf("[1] Ligar lâmpada\n");
+        printf("[2] Tocar som\n");
+        printf("[3] Mover braço\n");
+        printf("[0] Sair\n");
+        printf("Escolha uma ação: ");
+        scanf("%d", &comando);
+
+        switch (comando) {
+            case 1:
+                printf("Lâmpada ligada!\n");
+                break;
+            case 2:
+                printf("Som tocado!\n");
+                break;
+            case 3:
+                printf("Braço movido!\n");
+                break;
+            case 0:
+                printf("Encerrando programa.\n");
+                break;
+            default:
+                printf("Comando inválido!\n");
+        }
+    } while (comando != 0);
+}
+
+4.#include <stdio.h>
+
+void monitoramento_bateria() {
+    float bateria; // Variável para armazenar o nível da bateria
+
+    printf("Monitoramento de Bateria do Robô\n");
+
+    do {
+        // Solicita ao usuário o nível atual da bateria
+        printf("Digite o nível atual da bateria (em %%): ");
+        scanf("%f", &bateria);
+
+        // Verifica o nível da bateria
+        if (bateria < 20) {
+            printf("ALERTA: Nível de bateria baixo (%.2f%%). Por favor, recarregue a bateria!\n", bateria);
+        } else {
+            printf("Bateria está suficiente (%.2f%%). Sistema normal.\n", bateria);
+        }
+    } while (bateria < 20); // Continua enquanto a bateria estiver abaixo de 20%
+
+    printf("Bateria acima de 20%%. Monitoramento encerrado.\n");
+}
+
+5.#include <stdio.h>
+
+int main() {
+    int x = 0, y = 0;  // Posição inicial
+    char comando;
+
+    printf("Simulacao de Navegacao Autonoma (5x5)\n");
+    printf("Comandos:\n");
+    printf("U - Cima, D - Baixo, L - Esquerda, R - Direita, C - Parar\n\n");
+
+    do {
+        printf("Posicao atual: (%d, %d)\n", x, y);
+        printf("Digite um comando: ");
+        scanf(" %c", &comando);
+
+        switch (comando) {
+            case 'U': case 'u': 
+                if (y > 0) y--; 
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'D': case 'd': 
+                if (y < 4) y++; 
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'L': case 'l': 
+                if (x > 0) x--; 
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'R': case 'r': 
+                if (x < 4) x++; 
+                else printf("Movimento invalido! Fora do grid.\n");
+                break;
+            case 'C': case 'c': 
+                printf("Programa encerrado.\n");
+                break;
+            default: 
+                printf("Comando invalido! Tente novamente.\n");
+        }
+    } while (comando != 'C' && comando != 'c');
+
+    return 0;
+}
+
+Desafio.
+#include <stdio.h>
+#include <stdlib.h>
+
+int x = 0, y = 0; // Posição do robô
+int bateria = 100; // Nível inicial da bateria
+
+void controleMovimento() {
+    char comando;
+    printf("Controle de Movimento (10x10):\n");
+    printf("Comandos: U - Cima, D - Baixo, L - Esquerda, R - Direita\n");
+    printf("Digite um comando: ");
+    scanf(" %c", &comando);
+
+    switch (comando) {
+        case 'U': case 'u': 
+            if (y > 0) y--; 
+            else printf("Movimento invalido! Fora do grid.\n");
+            break;
+        case 'D': case 'd': 
+            if (y < 9) y++; 
+            else printf("Movimento invalido! Fora do grid.\n");
+            break;
+        case 'L': case 'l': 
+            if (x > 0) x--; 
+            else printf("Movimento invalido! Fora do grid.\n");
+            break;
+        case 'R': case 'r': 
+            if (x < 9) x++; 
+            else printf("Movimento invalido! Fora do grid.\n");
+            break;
+        default: 
+            printf("Comando invalido!\n");
+    }
+    bateria -= 5; // Consome bateria ao se mover
+    printf("Posicao atual: (%d, %d)\n", x, y);
+}
+
+void leituraSensores() {
+    printf("Leitura dos Sensores de Distancia:\n");
+    printf("Sensor frontal: %d cm\n", rand() % 100);
+    printf("Sensor esquerdo: %d cm\n", rand() % 100);
+    printf("Sensor direito: %d cm\n", rand() % 100);
+    bateria -= 2; // Consome bateria ao ler sensores
+}
+
+void controleAtuacao() {
+    char acao;
+    printf("Controle de Atuacao:\n");
+    printf("A - Ativar mecanismo, D - Desativar mecanismo\n");
+    printf("Digite um comando: ");
+    scanf(" %c", &acao);
+
+    switch (acao) {
+        case 'A': case 'a': 
+            printf("Mecanismo ativado.\n");
+            bateria -= 10;
+            break;
+        case 'D': case 'd': 
+            printf("Mecanismo desativado.\n");
+            break;
+        default: 
+            printf("Comando invalido!\n");
+    }
+}
+
+void monitoramentoBateria() {
+    printf("Nivel de bateria: %d%%\n", bateria);
+    if (bateria <= 0) {
+        printf("Bateria esgotada! Programa encerrado.\n");
+        exit(0);
+    }
+}
+
+void navegacaoAutonoma() {
+    printf("Navegacao Autonoma: Movendo para uma posicao predefinida (5, 5)...\n");
+    while (x != 5 || y != 5) {
+        if (x < 5) x++;
+        else if (x > 5) x--;
+
+        if (y < 5) y++;
+        else if (y > 5) y--;
+
+        printf("Posicao atual: (%d, %d)\n", x, y);
+        bateria -= 5;
+        if (bateria <= 0) {
+            printf("Bateria esgotada durante a navegacao! Programa encerrado.\n");
+            exit(0);
+        }
+    }
+    printf("Posicao final alcancada: (%d, %d)\n", x, y);
+}
+
+int main() {
+    int opcao;
+
+    do {
+        printf("\n--- Menu Principal ---\n");
+        printf("1. Controle de Movimento\n");
+        printf("2. Leitura de Sensores de Distancia\n");
+        printf("3. Controle de Atuacao\n");
+        printf("4. Monitoramento de Bateria\n");
+        printf("5. Navegacao Autonoma\n");
+        printf("6. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1: controleMovimento(); break;
+            case 2: leituraSensores(); break;
+            case 3: controleAtuacao(); break;
+            case 4: monitoramentoBateria(); break;
+            case 5: navegacaoAutonoma(); break;
+            case 6: printf("Encerrando o programa.\n"); break;
+            default: printf("Opcao invalida! Tente novamente.\n");
+        }
+    } while (opcao != 6);
+
+    return 0;
+}
+
+Arduino
+1.int cameraData[10];
+2.Esse código realiza a leitura de um valor analógico da porta A1 do Arduino e armazena esse valor na posição 3 do vetor cameraData. 
+A função analogRead retorna um valor entre 0 e 1023 (dependendo do sinal lido no pino analógico).
+3.float temperaturas[5] = {25.5, 26.0, 24.8, 27.3, 26.5};
+4.O código percorre as 4 primeiras posições de um vetor chamado ledPins e imprime cada valor no monitor serial.
+exemplo:
+int ledPins[4] = {2, 3, 4, 5}; // Exemplo de pinos digitais conectados a LEDs
+saida:
+2
+3
+4
+5
+
+5.int ledPins[4] = {2, 3, 4, 5}; // Vetor de pinos conectados aos LEDs
+
+void setup() {
+    Serial.begin(9600); // Inicia a comunicação serial
+}
+
+void loop() {
+    for (int i = 0; i < 4; i++) {
+        Serial.println(ledPins[i]); // Imprime os valores do vetor no Monitor Serial
+    }
+    delay(1000); // Atraso de 1 segundo entre as iterações
+}
+
+6.int randomValues[5];
+
+void setup() {
+    Serial.begin(9600); // Inicia a comunicação serial
+    randomSeed(analogRead(0)); // Inicializa o gerador de números aleatórios
+
+    for (int i = 0; i < 5; i++) {
+        randomValues[i] = random(0, 100); // Gera valores aleatórios entre 0 e 99
+    }
+
+    // Imprime os valores gerados
+    for (int i = 0; i < 5; i++) {
+        Serial.println(randomValues[i]);
+    }
+}
+
+void loop() {
+    // Não faz nada
+}
+
+7. código percorre o vetor sensorReadings até encontrar um elemento com o valor 150.
+Se o valor 150 for encontrado, o loop é interrompido imediatamente pelo comando break.
+for: Itera por todas as posições do vetor sensorReadings (limitado por tamanhoVetor).
+if: Verifica se o valor na posição atual é igual a 150.
+break: Interrompe o loop assim que a condição do if é verdadeira.
+
+8.A expressão sizeof(sensorData) retorna o tamanho total do vetor sensorData em bytes.
+A expressão sizeof(sensorData[0]) retorna o tamanho do primeiro elemento do vetor (o tamanho de um único elemento em bytes).
+Dividindo essas duas, obtemos o número total de elementos do vetor.
+
+Problemas.
+1.A primeira linha da matriz representa os valores de temperatura (em graus Celsius) registrados nos cinco momentos diferentes no primeiro local de monitoramento.
+{22, 25, 23, 21, 24}.
+No primeiro momento, a temperatura foi de 22°C.
+No segundo momento, foi de 25°C.
+No terceiro momento, foi de 23°C.
+No quarto momento, foi de 21°C.
+No quinto momento, foi de 24°C.
+2.A segunda linha da matriz representa os valores de umidade do solo (em porcentagem) registrados no segundo local nos cinco momentos
+Media=202/5=40.4%
+3.O valor máximo de CO2,402 ppm, foi atingido no terceiro momento.
+4.int ambientData[3][5] = {
+    {22, 25, 23, 21, 24},  // Temperatura
+    {45, 38, 42, 40, 37},  // Umidade do solo
+    {400, 380, 420, 410, 390} // Concentração de CO2
+};
+
+void setup() {
+    Serial.begin(9600);
+
+    int totalLocais = 3;
+    int totalLeituras = 5;
+    int somaTemperaturas = 0;
+
+    // Soma os valores de temperatura de todos os locais
+    for (int i = 0; i < totalLocais; i++) {
+        for (int j = 0; j < totalLeituras; j++) {
+            somaTemperaturas += ambientData[i][j];
+        }
+    }
+
+    // Calcula a média
+    float mediaTemperatura = somaTemperaturas / float(totalLocais * totalLeituras);
+
+    // Imprime a média
+    Serial.print("Media de temperatura em todos os locais: ");
+    Serial.println(mediaTemperatura);
+}
+
+void loop() {
+    // Não faz nada
+}
+
+
